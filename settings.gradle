@@ -8,5 +8,3 @@ pluginManagement {
 }
 
 $autoincludes$
-
-rootProject.name = "$name$"
