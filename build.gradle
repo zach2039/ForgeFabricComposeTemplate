@@ -1,14 +1,31 @@
 plugins {
-	id "dev.architectury.loom" version "0.10.0-SNAPSHOT" apply false
+	id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
 	//id "fabric-loom" version "0.10-SNAPSHOT" apply false
+	id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
 }
 
 subprojects {
 	apply plugin: "dev.architectury.loom"
 	//apply plugin: "fabric-loom"
+	apply plugin: 'com.github.johnrengelman.shadow'
 
 	loom {
-		refmapName = "$id$.refmap.mixins.json"
+		mixin {
+			defaultRefmapName = "$id$.refmap.mixins.json"
+		}
+	}
+
+
+
+	shadowJar {
+		configurations = []
+		relocate 'dev.tr7zw.donor', '$relocationpackage$.donor'
+		relocate 'dev.tr7zw.config', '$relocationpackage$.config'
+	}
+
+	remapJar {
+		dependsOn(shadowJar)
+		input = shadowJar.archiveFile
 	}
 
 	dependencies {
