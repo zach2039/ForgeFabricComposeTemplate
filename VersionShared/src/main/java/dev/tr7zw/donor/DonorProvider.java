@@ -1,7 +1,9 @@
 package dev.tr7zw.donor;
 
+import net.minecraft.resources.ResourceLocation;
+
 public interface DonorProvider {
 
-    public DonorSkinProvider getDonorSkinProvider();
+    public ResourceLocation getAnimatedSkin();
     
 }
