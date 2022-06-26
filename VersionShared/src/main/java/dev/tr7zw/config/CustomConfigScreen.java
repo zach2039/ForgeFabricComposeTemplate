@@ -122,7 +122,7 @@ public abstract class CustomConfigScreen extends Screen {
 			Consumer<T> update) {
 	    Map<String, T> mapping = new HashMap<>();
 	    Arrays.asList(targetEnum.getEnumConstants()).forEach(t -> mapping.put(t.name(), t));
-	    return new OptionInstance<T>(translationKey, OptionInstance.noTooltip(), (comp, t) -> comp.copy().append(": " + t.name()), new OptionInstance.Enum<T>(Arrays.asList(targetEnum.getEnumConstants()), Codec.STRING.xmap(s -> mapping.get(s), e -> e.name())), current.get(), update);
+	    return new OptionInstance<T>(translationKey, OptionInstance.noTooltip(), (comp, t) -> Component.translatable(translationKey + "." + t.name()), new OptionInstance.Enum<T>(Arrays.asList(targetEnum.getEnumConstants()), Codec.STRING.xmap(s -> mapping.get(s), e -> e.name())), current.get(), update);
 	}
 	
 	public static double round(double value, int places) {
